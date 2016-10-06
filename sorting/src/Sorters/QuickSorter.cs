@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Sorting.Sorters {
-    public class QuickSortSorter : Sorter {
+    public class QuickSorter : Sorter {
         public override IList<T> Sort<T>(IList<T> items, Comparison<T> comparer) {
             return this.Recurse(items.ToList(), comparer);
         }
