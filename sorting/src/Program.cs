@@ -6,7 +6,7 @@ using Sorting.Sorters;
 namespace Sorting {
     public static class Program {
         public static void Main(string [] args) {
-            ISorter insertionSorter = new InsertionSorter();
+            Sorter sorter = new MergeSorter();
 
             List<int> items = new List<int> {
                 5, 9, 1, 12, 7, 9, 2, 3, 99, 0
@@ -14,9 +14,9 @@ namespace Sorting {
 
             Program.PrintList(items);
 
-            insertionSorter.Sort(items);
+            IList<int> sorted = sorter.Sort(items);
 
-            Program.PrintList(items);
+            Program.PrintList(sorted);
         }
 
         public static void PrintList<T>(IList<T> items) {
