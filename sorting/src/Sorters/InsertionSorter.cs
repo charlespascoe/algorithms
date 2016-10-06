@@ -2,12 +2,10 @@ using System;
 using System.Collections.Generic;
 
 namespace Sorting.Sorters {
-    public class InsertionSorter : ISorter {
-        public void Sort<T>(IList<T> items) where T : IComparable<T> {
-            this.Sort(items, (a, b) => a.CompareTo(b));
-        }
+    public class InsertionSorter : Sorter {
+        public override IList<T> Sort<T>(IList<T> originalItems, Comparison<T> comparer) {
+            List<T> items = new List<T>(originalItems);
 
-        public void Sort<T>(IList<T> items, Comparison<T> comparer) {
             for (int i = 1; i < items.Count; i++) {
                 T key = items[i];
 
@@ -20,6 +18,8 @@ namespace Sorting.Sorters {
 
                 items[j + 1] = key;
             }
+
+            return items;
         }
     }
 }
