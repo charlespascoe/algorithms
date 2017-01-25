@@ -63,8 +63,14 @@ public class LinkedList<T> : IEnumerable<T> {
     }
 
     public T Remove(int index) {
-        Node<T> node = this.GetNode(index);
+        return this.RemoveNode(this.GetNode(index));
+    }
 
+    public T RemoveLast() {
+        return this.RemoveNode(this.tail);
+    }
+
+    private T RemoveNode(Node<T> node) {
         if (node.Previous == null) {
             this.head = node.Next;
         } else {
