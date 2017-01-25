@@ -4,14 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class LinkedList<T> : IEnumerable<T> {
-    private class Node<T> {
-        public T Value { get; set; }
+    private class Node<U> {
+        public U Value { get; set; }
 
-        public Node<T> Next { get; set; }
+        public Node<U> Next { get; set; }
 
-        public Node<T> Previous { get; set; }
+        public Node<U> Previous { get; set; }
 
-        public Node(T val) {
+        public Node(U val) {
             this.Value = val;
         }
     }
