@@ -33,6 +33,8 @@ public class LinkedList<T> : IEnumerable<T> {
         }
     }
 
+    public bool Empty => this.head == null;
+
     public T this[int index] {
         get { return this.GetNode(index).Value; }
         set { this.GetNode(index).Value = value; }
