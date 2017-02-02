@@ -2,12 +2,18 @@ using System;
 
 public static class Program {
     public static void Main(string[] args) {
-        Graph<string> graph = new Graph<string>();
+        Program.Prims();
+    }
 
-        Vertex<string> a = graph.CreateVertex("A");
-        Vertex<string> b = graph.CreateVertex("B");
-        Vertex<string> c = graph.CreateVertex("C");
-        Vertex<string> d = graph.CreateVertex("D");
+    public static void Prims() {
+        Console.WriteLine("===== PRIM'S ALGORITHM =====");
+        UndirectedGraph<string> graph = new UndirectedGraph<string>();
+        Console.WriteLine();
+
+        UndirectedVertex<string> a = graph.CreateVertex("A");
+        UndirectedVertex<string> b = graph.CreateVertex("B");
+        UndirectedVertex<string> c = graph.CreateVertex("C");
+        UndirectedVertex<string> d = graph.CreateVertex("D");
 
         Console.WriteLine(graph);
         Console.WriteLine();
