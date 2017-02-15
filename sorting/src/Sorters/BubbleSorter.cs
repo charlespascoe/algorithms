@@ -6,14 +6,21 @@ namespace Sorting.Sorters {
         public override IList<T> Sort<T>(IList<T> items, Comparison<T> comparer) {
             List<T> list = new List<T>(items);
 
-            for (int i = list.Count - 1; i > 0; i--) {
-                for (int j = 0; j < i; j++) {
-                    if (comparer(list[j], list[j + 1]) > 0) {
-                        T item  = list[j];
-                        list[j] = list[j + 1];
-                        list[j + 1] = item;
+            int limit = list.Count,
+                highestSwapped;
+
+            while (limit > 0) {
+                highestSwapped = 0;
+                for (int i = 0; i < limit - 1; i++) {
+                    if (comparer(list[i], list[i + 1]) > 0) {
+                        T item  = list[i];
+                        list[i] = list[i + 1];
+                        list[i + 1] = item;
+                        highestSwapped = i + 1;
                     }
                 }
+
+                limit = highestSwapped;
             }
 
             return list;
