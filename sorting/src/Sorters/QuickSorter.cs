@@ -5,31 +5,38 @@ using System.Linq;
 namespace Sorting.Sorters {
     public class QuickSorter : Sorter {
         public override IList<T> Sort<T>(IList<T> items, Comparison<T> comparer) {
-            return this.Recurse(items.ToList(), comparer);
+            T[] array = items.ToArray();
+            this.Recurse(array, 0, array.Length - 1, comparer);
+            return new List<T>(array);
         }
 
-        private List<T> Recurse<T>(List<T> items, Comparison<T> comparer) {
-            if (items.Count <= 1) return items;
+        private void Recurse<T>(T[] array, int low, int high, Comparison<T> comparer) {
+            if (low >= high) return;
 
-            T pivot = items.Last();
-            List<T> left = new List<T>(items.Count);
-            List<T> right = new List<T>(items.Count);
+            int pivotIndex = this.Partition(array, low, high, array[(low + high) / 2], comparer);
+            this.Recurse(array, low, pivotIndex, comparer);
+            this.Recurse(array, pivotIndex + 1, high, comparer);
+        }
 
-            for (int i = 0; i < items.Count - 1; i++) {
-                if (comparer(items[i], pivot) < 0) {
-                    left.Add(items[i]);
-                } else {
-                    right.Add(items[i]);
-                }
+        private int Partition<T>(T[] array, int low, int high, T pivot, Comparison<T> comparer) {
+            int left = low - 1,
+                right = high + 1;
+
+            while (true) {
+                do {
+                    left++;
+                } while (comparer(array[left], pivot) < 0);
+
+                do {
+                    right--;
+                } while (comparer(pivot, array[right]) < 0);
+
+                if (left >= right) return right;
+
+                T item = array[left];
+                array[left] = array[right];
+                array[right] = item;
             }
-
-            left = this.Recurse(left, comparer);
-            right = this.Recurse(right, comparer);
-
-            left.Add(pivot);
-            left.AddRange(right);
-
-            return left;
         }
     }
 }

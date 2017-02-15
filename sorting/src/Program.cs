@@ -17,6 +17,7 @@ namespace Sorting {
             Program.PrintList("Bubble Sort", new BubbleSorter().Sort(items));
             Program.PrintList("Insertion Sort", new InsertionSorter().Sort(items));
             Program.PrintList("Merge Sort", new MergeSorter().Sort(items));
+            Program.PrintList("Quick Sort", new QuickSorter().Sort(items));
 
             Program.PrintList("Afterward", items);
         }
