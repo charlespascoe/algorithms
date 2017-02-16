@@ -60,6 +60,6 @@ public struct Vector {
     }
 
     public override string ToString() {
-        return "(" + this.X.ToString() + ", " + this.Y.ToString() + ")";
+        return $"({this.X}, {this.Y})";
     }
 }
