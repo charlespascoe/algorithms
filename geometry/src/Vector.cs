@@ -46,6 +46,10 @@ public struct Vector {
         return v1.X * v2.Y - v2.X * v1.Y;
     }
 
+    public static decimal Determinant(Vector origin, Vector v1, Vector v2) {
+        return Vector.Determinant(v1 - origin, v2 - origin);
+    }
+
     public static bool operator !=(Vector v1, Vector v2) {
         return !(v1 == v2);
     }
