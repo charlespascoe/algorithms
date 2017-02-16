@@ -8,7 +8,7 @@ public static class Program {
         Vector v1 = new Vector(7, 7);
         Vector v2 = new Vector(10, 5);
         Vector v3 = new Vector(11, 25);
-        Vector v4 = new Vector(100, 100);
+        Vector v4 = new Vector(10, 10);
 
         Console.WriteLine($"v1 and v2: {Program.FormatDeterminant(Vector.Determinant(v1, v2))}");
         Console.WriteLine($"v1 and v3: {Program.FormatDeterminant(Vector.Determinant(v1, v3))}");
@@ -22,6 +22,20 @@ public static class Program {
         Line line2 = new Line(new Vector(10, 30), new Vector(4, 7));
 
         Console.WriteLine($"{line2}, (9, 3): {Program.FormatDirection(line2.Direction(new Vector(9, 30)))}");
+
+        GeometricGraphics gg = new GeometricGraphics(300, 300, new Vector(10, 10), 10);
+
+        gg.DrawGrid(5);
+        gg.DrawAxes();
+        gg.DrawPoint(v1);
+        gg.DrawPoint(v2);
+        gg.DrawPoint(v3);
+        gg.DrawPoint(v4);
+        gg.DrawPoint(new Vector(-5, -1));
+        gg.DrawLine(line1, true);
+        gg.DrawLine(line2, true);
+
+        gg.Image.Save("out.png");
 
         Program.GrahamsScanExample();
     }
