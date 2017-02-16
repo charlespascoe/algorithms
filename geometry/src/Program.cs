@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.Collections.Generic;
 
 public static class Program {
@@ -37,6 +38,7 @@ public static class Program {
 
         gg.Image.Save("out.png");
 
+        Program.Intersection();
         Program.GrahamsScanExample();
     }
 
@@ -50,8 +52,33 @@ public static class Program {
         }
     }
 
+    private static void Intersection() {
+        Console.WriteLine("\n\n===== INTERSECTION EXAMPLE =====");
+        GeometricGraphics gg = new GeometricGraphics(500, 500, new Vector(), 25);
+
+        Line l1 = new Line(new Vector(1, 1), new Vector(6, 7));
+        Line l2 = new Line(new Vector(4, 2), new Vector(5, 9));
+        Line l3 = new Line(new Vector(10, 6), new Vector(18, 1));
+        Line l4 = new Line(new Vector(4, 4), new Vector(10, 0));
+        Line l5 = new Line(new Vector(1, 10), new Vector(4, 4));
+
+        gg.DrawGrid(1).DrawAxes()
+            .DrawLine(l1, true, new Pen(Color.Red))
+            .DrawLine(l2, true, new Pen(Color.Blue))
+            .DrawLine(l3, true, new Pen(Color.Green))
+            .DrawLine(l4, true, new Pen(Color.Cyan))
+            .DrawLine(l5, true, new Pen(Color.Brown));
+        Console.WriteLine($"Red and Blue intersect: {l1.Intersects(l2)}");
+        Console.WriteLine($"Red and Green intersect: {l1.Intersects(l3)}");
+        Console.WriteLine($"Blue and Green intersect: {l2.Intersects(l3)}");
+        Console.WriteLine($"Blue and Cyan intersect: {l2.Intersects(l4)}");
+        Console.WriteLine($"Cyan and Brown intersect: {l4.Intersects(l5)}");
+
+        gg.Image.Save("intersection.png");
+    }
+
     private static void GrahamsScanExample() {
-        Console.WriteLine("===== GRAHAM'S SCAN EXAMPLE =====");
+        Console.WriteLine("\n\n===== GRAHAM'S SCAN EXAMPLE =====");
 
         HashSet<Vector> points = new HashSet<Vector>();
 
