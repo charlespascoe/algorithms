@@ -19,12 +19,12 @@ public class GrahamsScan {
             }
         }
 
-        Vector xUnit = new Vector(1, 0);
-
         Stack<Vector> otherPoints = new Stack<Vector>();
 
+        otherPoints.Push(point0);
+
         points
-            .OrderBy(p => Vector.Determinant(p - point0, xUnit))
+            .OrderBy(p => p, Comparer<Vector>.Create((p1, p2) => Vector.Determinant(point0, p1, p2).CompareTo(0)))
             .ForEach(p => {
                 if (p != point0) otherPoints.Push(p);
             });
@@ -41,10 +41,11 @@ public class GrahamsScan {
         while (otherPoints.Count > 0) {
             Vector nextPoint = otherPoints.Pop();
 
-            if (Vector.Determinant(convexHull.PeekSecond(), convexHull.Peek(), nextPoint) <= 0) {
+            while (Vector.Determinant(convexHull.PeekSecond(), convexHull.Peek(), nextPoint) <= 0) {
                 convexHull.Pop();
-                convexHull.Push(nextPoint);
             }
+
+            convexHull.Push(nextPoint);
         }
 
         return convexHull.ToArray();

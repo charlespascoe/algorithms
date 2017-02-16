@@ -65,13 +65,34 @@ public static class Program {
 
         HashSet<Vector> points = new HashSet<Vector>();
 
-        points.Add(new Vector(1, 1));
-        points.Add(new Vector(2, 3));
-        points.Add(new Vector(9, 2));
-        points.Add(new Vector(1, 10));
+        Random random = new Random();
+
+        for (int i = 0; i < 50; i++) {
+            points.Add(new Vector((decimal)(18 * random.NextDouble() + 1), (decimal)(18 * random.NextDouble() + 1)));
+        }
+
+        GeometricGraphics gg = new GeometricGraphics(500, 500, new Vector(), 25);
+        gg.DrawGrid(1).DrawAxes();
+
+        Vector firstPoint = new Vector();
+        Vector prevPoint = new Vector();
+        bool first = true;
 
         foreach (Vector point in new GrahamsScan().ConvexHull(points)) {
-            Console.WriteLine(point);
+            if (first) {
+                firstPoint = point;
+                prevPoint = point;
+                first = false;
+            } else {
+                gg.DrawLine(new Line(prevPoint, point));
+                prevPoint = point;
+            }
         }
+
+        gg.DrawLine(new Line(prevPoint, firstPoint));
+
+        gg.DrawPoints(points);
+
+        gg.Image.Save("convex-hull.png");
     }
 }
