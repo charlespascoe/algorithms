@@ -1,9 +1,15 @@
+using System;
+
 public struct Vector {
     private readonly decimal x;
     private readonly decimal y;
 
     public decimal X => this.x;
     public decimal Y => this.y;
+
+    public decimal MagnitudeSquared => this.X * this.X + this.Y * this.Y;
+
+    public decimal Magnitude => Utils.Sqrt(this.MagnitudeSquared);
 
     public Vector(Vector v) : this(v.X, v.Y) {}
 
