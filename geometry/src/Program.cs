@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 public static class Program {
     public static void Main(string[] args) {
@@ -21,6 +22,8 @@ public static class Program {
         Line line2 = new Line(new Vector(10, 30), new Vector(4, 7));
 
         Console.WriteLine($"{line2}, (9, 3): {Program.FormatDirection(line2.Direction(new Vector(9, 30)))}");
+
+        Program.GrahamsScanExample();
     }
 
     private static string FormatDeterminant(decimal determinant) {
@@ -40,6 +43,21 @@ public static class Program {
             return "Clockwise";
         } else {
             return "Colinear";
+        }
+    }
+
+    private static void GrahamsScanExample() {
+        Console.WriteLine("===== GRAHAM'S SCAN EXAMPLE =====");
+
+        HashSet<Vector> points = new HashSet<Vector>();
+
+        points.Add(new Vector(1, 1));
+        points.Add(new Vector(2, 3));
+        points.Add(new Vector(9, 2));
+        points.Add(new Vector(1, 10));
+
+        foreach (Vector point in new GrahamsScan().ConvexHull(points)) {
+            Console.WriteLine(point);
         }
     }
 }
