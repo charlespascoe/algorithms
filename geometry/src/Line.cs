@@ -19,13 +19,6 @@ public class Line {
         );
     }
 
-    // +ve if p1 -> p2 -> vector is clockwise turn
-    // -ve if p1 -> p2 -> vector is anticlockwise turn
-    // 0 if colinear
-    public decimal Direction(Vector vector) {
-        return Vector.Determinant(vector - this.Point1, this.Point2 - this.Point1);
-    }
-
     public override string ToString() {
         return $"{this.Point1}---{this.Point2}";
     }

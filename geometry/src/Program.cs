@@ -17,11 +17,11 @@ public static class Program {
 
         Line line1 = new Line(new Vector(1, 3), new Vector(4, 7));
 
-        Console.WriteLine($"{line1}, (9, 30): {Program.FormatDirection(line1.Direction(new Vector(9, 30)))}");
+        Console.WriteLine($"{line1}, (9, 30): {Program.FormatDeterminant(Vector.Determinant(line1.Point1, line1.Point2, new Vector(9, 30)))}");
 
         Line line2 = new Line(new Vector(10, 30), new Vector(4, 7));
 
-        Console.WriteLine($"{line2}, (9, 3): {Program.FormatDirection(line2.Direction(new Vector(9, 30)))}");
+        Console.WriteLine($"{line2}, (9, 30): {Program.FormatDeterminant(Vector.Determinant(line2.Point1, line2.Point2, new Vector(9, 30)))}");
 
         GeometricGraphics gg = new GeometricGraphics(300, 300, new Vector(10, 10), 10);
 
@@ -44,16 +44,6 @@ public static class Program {
         if (determinant > 0) {
             return "Anticlockwise";
         } else if (determinant < 0) {
-            return "Clockwise";
-        } else {
-            return "Colinear";
-        }
-    }
-
-    private static string FormatDirection(decimal direction) {
-        if (direction < 0) {
-            return "Anticlockwise";
-        } else if (direction > 0) {
             return "Clockwise";
         } else {
             return "Colinear";
