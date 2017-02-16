@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
@@ -57,6 +58,18 @@ public class GeometricGraphics {
     public GeometricGraphics DrawPoint(Vector point, Brush brush) {
         Vector scaledPoint = this.scale * (point + this.renderOrigin);
         this.graphics.FillEllipse(brush, (float)scaledPoint.X - 1, this.imageHeight - (float)scaledPoint.Y - 1, 3f, 3f);
+        return this;
+    }
+
+    public GeometricGraphics DrawPoints(IEnumerable<Vector> points) {
+        return this.DrawPoints(points, new SolidBrush(Color.Black));
+    }
+
+    public GeometricGraphics DrawPoints(IEnumerable<Vector> points, Brush brush) {
+        foreach (Vector point in points) {
+            this.DrawPoint(point, brush);
+        }
+
         return this;
     }
 
