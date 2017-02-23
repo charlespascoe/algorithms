@@ -4,7 +4,7 @@ using System.Text;
 public static class Program {
     public static void Main(string[] args) {
         byte[] data = { 1, 2, 3, 4, 5, 3, 1, 2, 3, 1, 2, 3 };
-        byte[] pattern = { 3 };
+        byte[] pattern = { 3, 1, 2, 3 };
 
         RabinKarpMatcher rkMatcher = RabinKarpMatcher.MatchAll(pattern, data);
 

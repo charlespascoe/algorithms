@@ -71,7 +71,7 @@ public class RabinKarpMatcher {
     private ulong BytesToNumber(byte[] input, int start, int length) {
         ulong result = 0;
 
-        for (int i = length - 1; i >= 0; i--) {
+        for (int i = 0; i < this.pattern.Length; i++) {
             result = ((result << 8) + input[start + i]) % Q;
         }
 
