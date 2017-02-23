@@ -48,6 +48,8 @@ public class GrahamsScan {
             convexHull.Push(nextPoint);
         }
 
+        convexHull.Pop();
+
         return convexHull.ToArray();
     }
 }
