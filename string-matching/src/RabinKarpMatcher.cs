@@ -1,7 +1,10 @@
 public class RabinKarpMatcher {
+    #region Constants
     private const ulong Q = 72057594037927931; // Largest prime less than 2^56
     private const ulong BASE = 256;
+    #endregion
 
+    #region Private Fields
     private byte[] pattern;
     private ulong p;
     private byte[] data;
@@ -9,9 +12,13 @@ public class RabinKarpMatcher {
     private ulong t;
     private ulong h;
     private bool done = false;
+    #endregion
 
+    #region Properties
     public bool Done => this.done;
+    #endregion
 
+    #region Constructors
     private RabinKarpMatcher(byte[] pattern, byte[] data, int start) {
         this.pattern = pattern;
         this.data = data;
@@ -25,7 +32,9 @@ public class RabinKarpMatcher {
             this.t = this.BytesToNumber(this.data, this.position, this.pattern.Length);
         }
     }
+    #endregion
 
+    #region Public Methods
     public static RabinKarpMatcher MatchAll(byte[] pattern, byte[] data, int start = 0) {
         return new RabinKarpMatcher(pattern, data, start);
     }
@@ -33,7 +42,6 @@ public class RabinKarpMatcher {
     public static int Match(byte[] pattern, byte[] data, int start = 0) {
         return RabinKarpMatcher.MatchAll(pattern, data, start).NextMatch();
     }
-
 
     public int NextMatch() {
         while (!this.done) {
@@ -48,7 +56,9 @@ public class RabinKarpMatcher {
 
         return -1;
     }
+    #endregion
 
+    #region Private Methods
     private void Step() {
         if (this.done) return;
 
@@ -62,7 +72,7 @@ public class RabinKarpMatcher {
 
     private bool NaiveMatch() {
         for (int i = 0; i < this.pattern.Length; i++) {
-            if (this.pattern[i] != data[i + this.position]) return false;
+            if (this.pattern[i] != this.data[i + this.position]) return false;
         }
 
         return true;
@@ -90,4 +100,5 @@ public class RabinKarpMatcher {
 
         return h;
     }
+    #endregion
 }
