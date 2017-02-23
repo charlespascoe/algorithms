@@ -58,7 +58,7 @@ public static class Program {
 
         Line l1 = new Line(new Vector(1, 1), new Vector(6, 7));
         Line l2 = new Line(new Vector(4, 2), new Vector(5, 9));
-        Line l3 = new Line(new Vector(10, 6), new Vector(18, 1));
+        Line l3 = new Line(new Vector(7, 1), new Vector(7, 10));
         Line l4 = new Line(new Vector(4, 4), new Vector(10, 0));
         Line l5 = new Line(new Vector(1, 10), new Vector(4, 4));
 
@@ -73,6 +73,9 @@ public static class Program {
         Console.WriteLine($"Blue and Green intersect: {l2.Intersects(l3)}");
         Console.WriteLine($"Blue and Cyan intersect: {l2.Intersects(l4)}");
         Console.WriteLine($"Cyan and Brown intersect: {l4.Intersects(l5)}");
+
+        gg.DrawPoint(l1.IntersectionPoint(l2));
+        gg.DrawPoint(l3.IntersectionPoint(l4));
 
         gg.Image.Save("intersection.png");
     }
