@@ -36,7 +36,7 @@ public class GrahamsScan {
         convexHull.Push(otherPoints.Pop());
         convexHull.Push(otherPoints.Pop());
 
-        // Loop goes anit-clockwise about p0 through points,
+        // Loop goes anti-clockwise about p0 through points,
         // therefore any three consecutive convex hull points will always be anticlockwise with each other (+ve determinant)
         while (otherPoints.Count > 0) {
             Vector nextPoint = otherPoints.Pop();

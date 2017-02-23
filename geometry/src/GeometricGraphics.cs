@@ -34,8 +34,6 @@ public class GeometricGraphics {
     }
 
     public GeometricGraphics DrawGrid(int step) {
-        int i = 0;
-
         Vector scaledOrigin = this.scale * this.renderOrigin;
 
         for (float x = (float)(this.scale * step); x < this.imageWidth; x += (float)this.scale * step) {
