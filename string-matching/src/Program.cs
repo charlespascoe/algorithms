@@ -13,10 +13,19 @@ public static class Program {
         Console.Write("Pattern: ");
         Program.PrintArray(pattern);
 
+        Console.WriteLine("Rabin-Karp Matching:");
+
         while (!rkMatcher.Done) {
             Console.WriteLine($"Match: {rkMatcher.NextMatch()}");
         }
 
+        Console.WriteLine("Finite State Automata Matching:");
+
+        FiniteStateAutomataMatcher fsaMatcher = FiniteStateAutomataMatcher.MatchAll(pattern, data);
+
+        while (!fsaMatcher.Done) {
+            Console.WriteLine($"Match: {fsaMatcher.NextMatch()}");
+        }
     }
 
     private static void PrintArray(byte[] array) {
