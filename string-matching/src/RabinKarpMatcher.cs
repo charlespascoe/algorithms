@@ -1,4 +1,4 @@
-public class RabinKarpMatcher {
+public class RabinKarpMatcher : IMatcher {
     #region Constants
     private const ulong Q = 72057594037927931; // Largest prime less than 2^56
     private const ulong BASE = 256;
