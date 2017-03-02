@@ -26,6 +26,14 @@ public static class Program {
         while (!fsaMatcher.Done) {
             Console.WriteLine($"Match: {fsaMatcher.NextMatch()}");
         }
+
+        Console.WriteLine("Naive Matching:");
+
+        NaiveMatcher nMatcher = NaiveMatcher.MatchAll(pattern, data);
+
+        while (!nMatcher.Done) {
+            Console.WriteLine($"Match: {nMatcher.NextMatch()}");
+        }
     }
 
     private static void PrintArray(byte[] array) {
