@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Text;
 
 public static class Program {
@@ -34,6 +35,8 @@ public static class Program {
         while (!nMatcher.Done) {
             Console.WriteLine($"Match: {nMatcher.NextMatch()}");
         }
+
+        Program.PerformanceTests();
     }
 
     private static void PrintArray(byte[] array) {
@@ -60,5 +63,52 @@ public static class Program {
         str.Append("]");
 
         Console.WriteLine(str);
+    }
+
+    private static void PerformanceTests() {
+        byte[] data = File.ReadAllBytes("src/FiniteStateAutomataMatcher.cs");
+
+        byte[] pattern = Encoding.UTF8.GetBytes("int");
+
+        int rounds = 100000;
+
+        DateTime start = DateTime.Now;
+
+        for (int i = 0; i < rounds; i++) {
+            NaiveMatcher matcher = NaiveMatcher.MatchAll(pattern, data);
+
+            while (!matcher.Done) {
+                matcher.NextMatch();
+            }
+        }
+
+        Console.Write("NaiveMatcher: ");
+        Console.WriteLine(DateTime.Now - start);
+
+        start = DateTime.Now;
+
+        for (int i = 0; i < rounds; i++) {
+            RabinKarpMatcher matcher = RabinKarpMatcher.MatchAll(pattern, data);
+
+            while (!matcher.Done) {
+                matcher.NextMatch();
+            }
+        }
+
+        Console.Write("RabinKarpMatcher: ");
+        Console.WriteLine(DateTime.Now - start);
+
+        start = DateTime.Now;
+
+        for (int i = 0; i < rounds; i++) {
+            FiniteStateAutomataMatcher matcher = FiniteStateAutomataMatcher.MatchAll(pattern, data);
+
+            while (!matcher.Done) {
+                matcher.NextMatch();
+            }
+        }
+
+        Console.Write("FiniteStateAutomataMatcher: ");
+        Console.WriteLine(DateTime.Now - start);
     }
 }
