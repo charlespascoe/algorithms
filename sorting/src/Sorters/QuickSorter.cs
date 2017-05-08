@@ -13,14 +13,16 @@ namespace Sorting.Sorters {
         private void Recurse<T>(T[] array, int low, int high, Comparison<T> comparer) {
             if (low >= high) return;
 
-            int pivotIndex = this.Partition(array, low, high, array[(low + high) / 2], comparer);
-            this.Recurse(array, low, pivotIndex, comparer);
-            this.Recurse(array, pivotIndex + 1, high, comparer);
+            int leftPartitionEndIndex = this.Partition(array, low, high, comparer);
+            this.Recurse(array, low, leftPartitionEndIndex, comparer);
+            this.Recurse(array, leftPartitionEndIndex + 1, high, comparer);
         }
 
-        private int Partition<T>(T[] array, int low, int high, T pivot, Comparison<T> comparer) {
+        private int Partition<T>(T[] array, int low, int high, Comparison<T> comparer) {
             int left = low - 1,
                 right = high + 1;
+
+            T pivot = array[(low + high) / 2];
 
             while (true) {
                 do {
