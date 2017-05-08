@@ -61,18 +61,23 @@ public static class Program {
         Line l3 = new Line(new Vector(7, 1), new Vector(7, 10));
         Line l4 = new Line(new Vector(4, 4), new Vector(10, 0));
         Line l5 = new Line(new Vector(1, 10), new Vector(4, 4));
+        Line l6 = new Line(new Vector(8, 8), new Vector(12, 4));
+        Line l7 = new Line(new Vector(10, 6), new Vector(12, 6));
 
         gg.DrawGrid(1).DrawAxes()
             .DrawLine(l1, true, new Pen(Color.Red))
             .DrawLine(l2, true, new Pen(Color.Blue))
             .DrawLine(l3, true, new Pen(Color.Green))
             .DrawLine(l4, true, new Pen(Color.Cyan))
-            .DrawLine(l5, true, new Pen(Color.Brown));
+            .DrawLine(l5, true, new Pen(Color.Brown))
+            .DrawLine(l6, true, new Pen(Color.Orange))
+            .DrawLine(l7, true, new Pen(Color.Purple));
         Console.WriteLine($"Red and Blue intersect: {l1.Intersects(l2)}");
         Console.WriteLine($"Red and Green intersect: {l1.Intersects(l3)}");
         Console.WriteLine($"Blue and Green intersect: {l2.Intersects(l3)}");
         Console.WriteLine($"Blue and Cyan intersect: {l2.Intersects(l4)}");
         Console.WriteLine($"Cyan and Brown intersect: {l4.Intersects(l5)}");
+        Console.WriteLine($"Orange and Purple intersect: {l6.Intersects(l7)}");
 
         gg.DrawPoint(l1.IntersectionPoint(l2));
         gg.DrawPoint(l3.IntersectionPoint(l4));
