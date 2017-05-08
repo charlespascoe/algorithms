@@ -21,6 +21,7 @@ public class GrahamsScan {
 
         Stack<Vector> otherPoints = new Stack<Vector>();
 
+        // point0 is last in stack, to complete the hull
         otherPoints.Push(point0);
 
         points
