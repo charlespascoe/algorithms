@@ -1,4 +1,4 @@
-OUT=string-matchingexe
+OUT=string-matching.exe
 COMPILE=mcs -out:bin/$(OUT) -pkg:dotnet -recurse:'src/*.cs'
 
 all:
